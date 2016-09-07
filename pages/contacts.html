@@ -1,0 +1,169 @@
+<!-- h1 selectable="false">{{ title }}</h1 -->
+<!-- h3 selectable="false">{{ name }}</h3 -->
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+	<div class="panel-heading" style="padding: 0px 0px;">
+		<span title="search" role="button" class="input-group-lg input-group-addon glyphicon glyphicon-search" data-toggle="collapse" data-target="#searchDialog" style="cursor: pointer;" selectable="false" ng-click="appFocussearch()"></span>
+    <span title="sort" role="button" class="input-group-lg input-group-addon glyphicon glyphicon glyphicon-sort-by-attributes" ng-class="{ 'glyphicon-sort-by-attributes-alt': isReverse }" ng-click="sortBuddies()" style="cursor: pointer;" selectable="false"></span>
+    <span title="sort" role="button" class="input-group-lg input-group-addon glyphicon glyphicon glyphicon-sort-by-alphabet" ng-class="{ 'glyphicon-sort-by-alphabet-alt': isABReverse }" ng-click="sortBuddiesAB()" style="cursor: pointer;" selectable="false"></span>
+		<span title="add" role="button" class="input-group-lg input-group-addon glyphicon glyphicon-plus" data-toggle="collapse" data-target="#addDialog" style="cursor: pointer;" selectable="false" ng-click="appFocusadd()"></span>
+	</div>
+	<div id="searchDialog" class="panel-body collapse" aria-expanded="false" show-aria is-open>
+    <form name="searchForm" class="form-horizontal" role="form" ng-model="searchPerson" novalidate>
+      <div class="input-group input-group-lg" title="Search Buddies" aria-label="Search Buddies">
+        <input type="text" class="form-control" id="appsearch" name="appsearch" placeholder="Search..." data-ng-model="person.search" ng-change="searchBuddies()" autofocus zauto-focus>
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" data-ng-click="clearSearch()">Clear</button>
+        </span>
+      </div><!-- /input-group -->
+    </form>
+	</div>
+	<div id="addDialog" class="panel-body collapse" aria-expanded="false">
+		<form name="newPersonForm" class="form-horizontal" role="form" ng-model="newPerson" novalidate>
+			<div class="form-group form-group-lg" 
+           show-errors="{showSuccess: true}" 
+           ng-class="{ 
+								 'has-error': newPersonForm.first_name.$invalid && newPerson.first_name.length > 1, 
+								 'has-success': newPersonForm.first_name.$valid && newPersonForm.first_name.$dirty}">
+				<label class="col-sm-2 control-label" selectable="false">{{first_nametitle}}</label>
+				<div class="col-sm-10">
+					<input type="text" 
+								 class="form-control" 
+                 id="first_name" 
+								 name="first_name" 
+								 maxlength="50" 
+                 ng-change="changeFirstName()" 
+                 pattern="[a-zA-Z'`-]+" 
+								 placeholder="First Name" 
+								 data-ng-model="newPerson.first_name" 
+                 ng-required="true" zautofocus>
+				</div>	
+			</div>
+			<div class="form-group form-group-lg" 
+           show-errors="{showSuccess: true}" 
+           ng-class="{ 
+                     'has-error': newPersonForm.last_name.$invalid && newPersonForm.last_name.length > 1, 
+                     'has-success': newPersonForm.last_name.$valid && newPersonForm.last_name.$dirty}">
+				<label class="col-sm-2 control-label">{{last_nametitle}}</label>
+				<div class="col-sm-10">
+					<input type="text" 
+								 class="form-control" 
+								 name="last_name" 
+                 maxlength="50" 
+                 ng-change="changeLastName()" 
+                 pattern="[a-zA-Z'`-]+" 
+								 placeholder="Last Name" 
+								 data-ng-model="newPerson.last_name">
+				</div>	
+			</div>
+			<div class="form-group form-group-lg" 
+           show-errors="{showSuccess: true}" 
+           ng-class="{ 
+								 'has-error': newPersonForm.user_name.$invalid && newPersonForm.user_name.length > 1, 
+								 'has-success': newPersonForm.user_name.$valid && newPersonForm.user_name.$dirty}">
+				<label class="col-sm-2 control-label">{{user_nametitle}}</label>
+				<div class="col-sm-10">
+					<input type="text" 
+								 class="form-control" 
+								 name="user_name" 
+                 maxlength="50" 
+								 placeholder="Handle - user name" 
+                 pattern="[a-zA-Z0-9]+" 
+                 ng-change="changeHandle()" 
+								 data-ng-model="newPerson.user_name">
+				</div>	
+			</div>
+			<div class="form-group form-group-lg" 
+           show-errors="{showSuccess: true}" 
+           ng-class="{ 
+                 'has-error': newPersonForm.email_address.$invalid && newPersonForm.email_address.$dirty && newPerson.email_address.length > 2, 
+							   'has-success': newPersonForm.email_address.$valid }">
+				<label class="col-sm-2 control-label">{{email_addresstitle}}</label>
+				<div class="col-sm-10">
+					<input type="email" 
+								 class="form-control" 
+                 id="email_address" 
+								 name="email_address" 
+                 pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" 
+								 maxlength="56"  
+								 placeholder="Email Address" 
+                 ng-change="changeEmail()" 
+								 ng-model="newPerson.email_address" 
+                 ng-pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" 
+                 ng-maxlength="56" 
+                 ng-required="true">
+				</div>	
+			</div>
+			<div class="form-group form-group-lg" 
+           show-errors="{showSuccess: true}" 
+           ng-class="{ 
+                     'has-error': newPersonForm.birth_date.$invalid && newPersonForm.birth_date.length > 3, 
+                     'has-success': newPersonForm.birth_date.$valid}">
+				<label class="col-sm-2 control-label">{{birth_datetitle}}</label>
+				<div class="col-sm-10">
+          <div class="input-group input-group-lg">
+            <input type="date" 
+                   class="form-control" 
+                   name="birth_date" 
+                   id="birth_date" 
+                   ng-model="newPerson.birth_date" 
+                   placeholder="yyyy-mm-dd" 
+                   ng-change="changeBirthdate()" 
+                   ng-required="true" 
+                   uib-datepicker-popup 
+                   date-popup={{format}} 
+                   is-open="opened" 
+                   datepicker-options="dateOptions" 
+                   date-disabled="disabled(date, mode)" 
+                   close-text="Done">
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </div>
+				</div>	
+			</div>
+			<hr />
+			<div class="form-group form-group-lg">
+				<div class="col-sm-12">
+					<button 
+                  type="submit"
+                  id="submit" 
+                  name="submit" 
+                  value="submit" 
+                  class="btn btn-default btn-lg pull-left" 
+                  mozactionhint="send" 
+                  ng-click="addPerson()"
+                  ng-class="{ 'btn-default': newPersonForm.$invalid, 'btn-success': newPersonForm.$valid }" 
+                  ng-disabled="newPersonForm.$invalid">Add</button>
+					<button 
+                  type="reset" 
+                  class="btn btn-default btn-lg pull-right" 
+                  mozactionhint="reset" 
+                  ng-click="addPersonReset()">Clear</button>
+				</div>
+			</div>	
+		</form>
+	</div>
+	<div class="list-group">
+		<card-list class="list-group-item" 
+							 person-object="person" 
+							 formatted-username-function="formattedUsername(aperson)" 
+							 formatted-avatarurl-function="formattedAvatarurl(aperson)" 
+							 formatted-firstname-function="formattedFirstname(aperson)" 
+							 formatted-lastname-function="formattedLastname(aperson)" 
+							 formatted-htmlurl-function="formattedHtmlurl(aperson)" 
+							 formatted-emailaddress-function="formattedEmailaddress(aperson)" 
+							 formatted-userid-function="formattedUserid(aperson)" 
+							 formatted-onlinestatus-function="formattedOnlinestatus(aperson)" 
+							 formatted-onlinelast-function="formattedOnlinelast(aperson)" 
+							 formatted-birthdate-function="formattedBirthdate(aperson)" 
+							 get-biodetails-function="getBiodetails(aperson)" 
+							 get-onlinelastdetails-function="getOnlinelastdetails(aperson)" 
+							 up-starrank-function="upStarrank(aperson)" 
+							 down-starrank-function="downStarrank(aperson)"
+               formatted-starranking-function="formattedStarranking(aperson)" 
+							 trash-yourbud-function="trashYourbud(aperson)" 
+							 ng-repeat="person in people track by $index">
+		</card-list>
+	</div>
+</div>

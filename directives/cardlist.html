@@ -1,0 +1,91 @@
+<div class="media-top ng-cloak" 
+		 ng-class="{'list-group-item-success': formattedOnlinestatusFunction({ aperson: personObject }) === 'Available', 'list-group-item-warning': formattedOnlinestatusFunction({ aperson: personObject }) === 'Busy', 'list-group-item-info': formattedOnlinestatusFunction({ aperson: personObject }) === 'Idle', 'list-group-item-danger': formattedOnlinestatusFunction({ aperson: personObject }) === 'Offline', 'list-group-item-default': formattedOnlinestatusFunction({ aperson: personObject }) === 'Unknown'}"
+		 name="media-row" 
+		 ng-model="mediarow" 
+		 draggable="true" 
+		 droppable="true"
+     reorder="true">
+	<div class="media">
+		<div class="media-left">
+			<img class="default media-object img-circle" style="height: 50px; width: 50px; margin: 8px; box-shadow: 1px 6px 8px 1px rgba(0,0,0,0.5)" src="{{ formattedAvatarurlFunction({ aperson: personObject }) }}" />
+		</div>
+		<div class="media-body">
+			<div class="media-heading">
+        <div class="input-group ranking" title="Star Rank Your Bud">
+          <span 
+                class="default glyphicon glyphicon-star pull-right" 
+                style="padding: 5px;" 
+                title="Star Rank Up" 
+                role="button" 
+                ng-class="{'glyphicon-star-empty': formattedStarrankingFunction({ aperson: personObject }) < 5}" 
+                ng-click="upStarrankFunction({ aperson: personObject })">
+          </span>
+          <span
+                class="default glyphicon glyphicon-star pull-right" 
+                style="padding: 5px;" 
+                title="Star Rank Up" 
+                role="button" 
+                ng-class="{'glyphicon-star-empty': formattedStarrankingFunction({ aperson: personObject }) < 4}" 
+                ng-click="upStarrankFunction({ aperson: personObject })">
+          </span>
+          <span
+                class="default glyphicon glyphicon-star pull-right" 
+                style="padding: 5px;" 
+                ng-class="{'glyphicon-star-empty': formattedStarrankingFunction({ aperson: personObject }) < 3}" 
+                role="button">
+          </span>
+          <span
+                class="default glyphicon glyphicon-star pull-right" 
+                style="padding: 5px;" 
+                title="Star Rank Down" 
+                ng-class="{'glyphicon-star-empty': formattedStarrankingFunction({ aperson: personObject }) < 2}" 
+                role="button" 
+                ng-click="downStarrankFunction({ aperson: personObject })">
+          </span>
+          <span
+                class="default glyphicon glyphicon-star pull-right" 
+                style="padding: 5px;" 
+                title="Star Rank Down" 
+                ng-class="{'glyphicon-star-empty': formattedStarrankingFunction({ aperson: personObject }) < 1}" 
+                role="button" 
+                ng-click="downStarrankFunction({ aperson: personObject })">
+          </span>
+        </div>
+				<h4>
+					{{ formattedFirstnameFunction({ aperson: personObject }) }} {{ formattedLastnameFunction({ aperson: personObject }) }}
+				</h4>
+				<span aria-check 
+						 class="default glyphicon glyphicon-chevron-down pull-right collapsed" 
+						 style="padding: 5px;" 
+						 role="button" 
+						 data-toggle="collapse" 
+						 data-target="#expandedDetails{{ formattedUseridFunction({ aperson: personObject }) }}" 
+						 aria-expanded="false">
+				</span>
+				<p>
+					Status: {{ formattedOnlinestatusFunction({ aperson: personObject }) }}
+				</p>
+			</div>
+			<div id="expandedDetails{{ formattedUseridFunction({ aperson: personObject }) }}" class="collapse">
+				<dl class="dl-horizontal media-text" style="right: 25px;">
+					<dt>Bio : </dt><dd> {{ getBiodetailsFunction({ aperson: personObject }) }} </dd>
+					<dt>Birthdate : </dt><dd> {{ formattedBirthdateFunction({ aperson: personObject }) }} </dd>
+					<dt>Email : </dt><dd><a href="mailto:{{ formattedEmailaddressFunction({ aperson: personObject }) }}">{{ formattedEmailaddressFunction({ aperson: personObject }) }}</a></dd>
+					<dt>Web : </dt><dd><a href="{{ formattedHtmlurlFunction({ aperson: personObject }) }}">{{ formattedHtmlurlFunction({ aperson: personObject }) }}</a></dd>
+          <div ng-class="{'ng-hide': getOnlinelastdetailsFunction({ aperson: personObject })}">
+				    <dt>Last Seen : </dt><dd> {{ formattedOnlinelastFunction({ aperson: personObject }) }} </dd>
+          </div>
+          <span 
+              class="default glyphicon glyphicon-trash pull-right" 
+              style="padding: 5px;" 
+						  role="button" 
+              data-toggle="collapse" 
+						  data-target="#expandedDetails{{ formattedUseridFunction({ aperson: personObject }) }}" 
+						  title="Trash Your Buddy {{ formattedUseridFunction({ aperson: personObject }) }}" 
+						  ng-click="trashYourbudFunction({ aperson: personObject })">
+				  </span>
+				</dl>
+			</div>
+		</div>
+	</div>
+</div>

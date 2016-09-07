@@ -1,0 +1,237 @@
+<h1>{{ title }}</h1>
+<!-- h3>{{ subtitle }}</h3 -->
+<hr />
+<form name="userForm" class="form-horizontal" role="form" class="user-form" ng-model="user" novalidate>
+	<!-- p>
+		<code class="success">userForm.email.$pristine {{ userForm.email.$pristine }}</code><br />
+		<code class="success">userForm.email.$untouched {{ userForm.email.$untouched }}</code><br />
+		<code class="success">userForm.email.$touched {{ userForm.email.$touched }}</code><br />
+		<code class="success">userForm.email.$dirty {{ userForm.email.$dirty }}</code><br /><br />
+		
+		<code class="success">userForm.email.$error.minlength {{ userForm.email.$error.minlength }}</code><br />
+		<code class="success">userForm.email.$error.maxlength {{ userForm.email.$error.maxlength }}</code><br />
+		<code class="success">userForm.email.$error.pattern {{ userForm.email.$error.pattern }}</code><br />
+		<code class="success">userForm.email.$error.required {{ userForm.email.$error.required }}</code><br /><br />
+		
+		<code class="success">userForm.email.$valid {{ userForm.email.$valid }}</code><br />
+		<code class="success">userForm.email.$invalid {{ userForm.email.$invalid }}</code><br />
+		<code class="success">userForm.email.$required {{ userForm.email.$required }}</code><br />
+	</p -->
+	<div class="form-group form-group-lg" 
+			 show-errors="{showSuccess: true}" 
+			 ng-class="{ 
+                 'has-error': userForm.email.$invalid && userForm.email.$dirty && user.email.length > 2, 
+							   'has-success': userForm.email.$valid }">
+		<label class="col-sm-2 control-label">{{ emailtitle }}</label>
+    <!--  /^.+@.+\..+$/ old-pattern  -->
+		<div class="col-sm-10">
+			<input type="email" 
+						 class="form-control" 
+             id="email" 
+						 name="email" 
+						 pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" 
+						 maxlength="56" 
+						 placeholder="Email Address" 
+						 ng-change="changeEmail()" 
+						 ng-model="user.email" 
+						 ng-pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" 
+						 ng-maxlength="56" 
+						 ng-required="true">
+		</div>
+	</div>
+	<div class="form-group form-group-lg" 
+			 show-errors="{showSuccess: true}" 
+			 ng-class="{ 
+								 'has-error': userForm.password.$invalid && userForm.password.$dirty, 
+								 'has-success': userForm.password.$valid && userForm.password.$dirty }" >
+		<label class="col-sm-2 control-label">{{ passwordtitle }}</label>
+		<div class="col-sm-10">
+			<input type="password" 
+						 class="form-control" 
+						 name="password" 
+						 placeholder="Create Password" 
+						 ng-change="changePassword()" 
+						 ng-model="user.password" 
+						 ng-minlength="1" 
+						 ng-required="true">
+			</div>
+		
+	</div>
+	<div class="form-group form-group-lg" 
+			 show-errors="{showSuccess: true}" 
+			 ng-class="{ 
+								 'has-error': userForm.verify.$invalid && userForm.verify.$dirty, 
+								 'has-success': userForm.verify.$valid && userForm.verify.$dirty }" >
+		<label class="col-sm-2 control-label">{{ verifytitle }}</label>
+		<div class="col-sm-10">
+			<input type="password" 
+						 class="form-control" 
+						 name="verify" 
+						 placeholder="Verify Password" 
+						 ng-model="user.verify" 
+						 ng-change="changeVerify()" 
+						 ng-required="true">
+		</div>
+	</div>
+
+	<!--p>
+		<code class="success">userForm.firstname.$untouched {{ userForm.firstname.$untouched }}</code><br />
+		<code class="success">userForm.firstname.$pristine {{ userForm.firstname.$pristine }}</code><br />
+		<code class="success">userForm.firstname.$touched {{ userForm.firstname.$touched }}</code><br />
+		<code class="success">userForm.firstname.$dirty {{ userForm.firstname.$dirty }}</code><br />
+		<code class="success">userForm.firstname.$error.pattern {{ userForm.firstname.$error.pattern }}</code><br />
+		<code class="success">userForm.firstname.$error.maxlength {{ userForm.firstname.$error.maxlength }}</code><br />
+		<code class="success">userForm.firstname.$error.minlength {{ userForm.firstname.$error.minlength }}</code><br />
+		<code class="success">userForm.firstname.$error.required {{ userForm.firstname.$error.required }}</code><br />
+		<code class="success">userForm.firstname.$invalid {{ userForm.birthdate.$invalid }}</code><br />
+		<code class="success">userForm.firstname.$valid {{ userForm.birthdate.$valid }}</code><br />
+	</p-->
+		
+	<div class="form-group form-group-lg" 
+			 show-errors="{showSuccess: true}" 
+			 ng-class="{ 
+								 'has-error': userForm.firstname.$invalid && userForm.firstname.$dirty && user.firstname.length > 1, 
+								 'has-success': userForm.firstname.$valid && userForm.firstname.$dirty}">
+		<label class="col-sm-2 control-label">{{ firstnametitle }}</label>
+		<div class="col-sm-10">
+			<input type="text" 
+						 class="form-control" 
+						 name="firstname" 
+						 placeholder="First Name" 
+						 maxlength="50" 
+						 pattern="[a-zA-Z'`-]+" 
+						 ng-model="user.firstname" 
+						 ng-maxlength="50" 
+						 ng-change="changeFirstName()" 
+						 ng-required="true">
+		</div>	
+	</div>
+	<div class="form-group form-group-lg" 
+			 show-errors="{showSuccess: true}" 
+			 ng-class="{ 
+								 'has-error': userForm.lastname.$invalid && userForm.lastname.$dirty && user.lastname.length > 1, 
+								 'has-success': userForm.lastname.$valid && userForm.lastname.$dirty}">
+		<label class="col-sm-2 control-label">{{ lastnametitle }}</label>
+		<div class="col-sm-10">
+			<input type="text" 
+						 class="form-control" 
+						 name="lastname" 
+						 placeholder="Last Name" 
+						 maxlength="50" 
+						 pattern="[a-zA-Z'`-]+"
+						 ng-model="user.lastname" 
+						 ng-maxlength="50"
+						 ng-change="changeLastName()">
+		</div>
+	</div>
+	<!--p>
+		<code class="success">userForm.birthdate.$untouched {{ userForm.birthdate.$untouched }}</code><br />
+		<code class="success">userForm.birthdate.$pristine {{ userForm.birthdate.$pristine }}</code><br />
+		<code class="success">userForm.birthdate.$touched {{ userForm.birthdate.$touched }}</code><br />
+		<code class="success">userForm.birthdate.$dirty {{ userForm.birthdate.$dirty }}</code><br />
+		<code class="success">userForm.birthdate.$required {{ userForm.birthdate.$required }}</code><br />
+		<code class="success">userForm.birthdate.$error.min {{ userForm.birthdate.$error.min }}</code><br />
+		<code class="success">userForm.birthdate.$error.max {{ userForm.birthdate.$error.max }}</code><br />
+		<code class="success">userForm.birthdate.$invalid {{ userForm.birthdate.$invalid }}</code><br />
+		<code class="success">userForm.birthdate.$valid {{ userForm.birthdate.$valid }}</code><br />
+		<code class="success">mminDate {{ mminDate() | date:'yyyy-MM-dd' }}</code><br />
+		<code class="success">mmaxDate {{ mmaxDate() | date:'yyyy-MM-dd' }}</code><br />
+	</p-->
+	<div class="form-group form-group-lg" 
+			 show-errors="{showSuccess: true}" 
+			 ng-class="{ 
+								 'has-error': userForm.birthdate.$invalid && user.birthdate.length > 3,
+								 'has-success': userForm.birthdate.$valid}">
+		<label class="col-sm-2 control-label">{{ birthdatetitle }}</label>
+		<div class="col-sm-10">
+			<div class="input-group input-group-lg">
+				<input 
+               type="date" 
+               class="form-control" 
+               id="birthdate" 
+               name="birthdate" 
+               placeholder="yyyy-mm-dd" 
+               ng-model="user.birthdate" 
+               ng-change="changeBirthdate()" 
+               ng-required="true" 
+               uib-datepicker-popup 
+               date-popup={{format}} 
+               is-open="opened" 
+               datepicker-options="dateOptions" 
+               date-disabled="disabled(date, mode)" 
+               close-text="Done">
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+				</span>
+      </div>
+    </div>
+     <!-- div class="col-sm-10">
+			<div class="input-group input-group-lg">
+				<input 
+               type="date" 
+               class="form-control" 
+               id="birthdate" 
+               name="birthdate" 
+               placeholder="yyyy-mm-dd" 
+               max="{{ ::mmaxDate() | date:'yyyy-MM-dd' }}" 
+               min="{{ ::mminDate() | date:'yyyy-MM-dd' }}" 
+               ng-model="user.birthdate" 
+               ng-change="changeBirthdate()" 
+               ng-required="true" 
+               uib-datepicker-popup 
+               date-popup={{format}} 
+               is-open="opened" 
+               datepicker-options="dateOptions" 
+               date-disabled="disabled(date, mode)" 
+               close-text="Done"/>
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+				</span>
+      </div>
+    </div -->
+
+  </div>
+	<hr />
+	<!--p>
+		<code>userForm.$valid {{ userForm.$valid }}</code><br/>
+		<code>userForm.$invalid {{ userForm.$invalid }}</code><br/>
+		<code>userForm.$pristine {{ userForm.$pristine }}</code><br/>
+		<code>userForm.$dirty {{ userForm.$dirty }}</code><br/>
+		<code>userForm.$pending {{ userForm.$pending }}</code><br/>
+		<code>userForm.$submitted {{ userForm.$submitted }}</code><br/><br/>
+		<code>userForm.$error.email {{ userForm.$error.email  }}</code><br/>
+		<code>userForm.$error.min {{ userForm.$error.min  }}</code><br/>
+		<code>userForm.$error.max {{ userForm.$error.max  }}</code><br/>
+		<code>userForm.$error.minlength {{ userForm.$error.minlength  }}</code><br/>
+		<code>userForm.$error.number {{ userForm.$error.number  }}</code><br/>
+		<code>userForm.$error.url {{ userForm.$error.url  }}</code><br/>
+		<code>userForm.$error.date {{ userForm.$error.date  }}</code><br/>
+		<code>userForm.$error.datetimelocal {{ userForm.$error.datetimelocal  }}</code><br/>
+		<code>userForm.$error.month {{ userForm.$error.month  }}</code><br/>
+		<code>userForm.$error.week {{ userForm.$error.week  }}</code><br/>
+		<code>userForm.$error.time {{ userForm.$error.time  }}</code><br/>
+		<code>userForm.$error.pattern {{ userForm.$error.pattern  }}</code><br/>
+		<code>userForm.$error.required {{ userForm.$error.required  }}</code><br/>
+	</p-->
+	<div class="form-group form-group-lg">
+		<div class="col-sm-12">
+			<button 
+							type="submit" 
+				 			id="submit" 
+              name="submit" 
+              value="submit" 
+							class="btn btn-default btn-lg pull-left" 
+							mozactionhint="signup" 
+							ng-click="Signup()" 
+							ng-class="{ 'btn-default': userForm.$invalid, 'btn-success': userForm.$valid }" 
+							ng-disabled="userForm.$invalid">Signup!</button>
+			<button 
+							type="reset" 
+							class="btn btn-default btn-lg pull-right" 
+							mozactionhint="reset" 
+							ng-click="loginReset()">Reset</button>
+		</div>
+	</div>
+</form>
+<footer>
+</footer>

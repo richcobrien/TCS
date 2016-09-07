@@ -1,0 +1,33 @@
+<h1>{{ name }}</h1>
+<h3>{{ subtitle }}</h3>
+<div class="form-group">
+	<h4>Handle Rules</h4>
+	<div class="input-group" ng-repeat="rule in rules track by $index" title="{{ rule.RuleName }}">
+		<span class="input-group-addon info">{{ $index + 1 }}</span>
+		<input type="text" class="form-control" ng-change="updateRule()" ng-model="rule.RuleName">
+		<div class="input-group-btn">
+			<button type="button" name="btnOk" id="btnOk" class="btn btn-success" ng-click="updateRule()" ng-show="false" aria-label="Save Changes" title="Save Changes">
+				<span class="glyphicon glyphicon-ok"></span>
+			</button>
+			<button type="button" class="btn btn-warning" ng-click="abortRule()" ng-show="false" aria-label="Abort Changes" title="Abort Changes">
+				<span class="glyphicon glyphicon-erase"></span>
+			</button>
+			<button type="button" class="btn btn-info" ng-click="editRule()" ng-show="false" aria-label="Edit Item" title="Edit Item">
+				<span class="glyphicon glyphicon-pencil"></span>
+			</button>
+			<button type="button" class="btn btn-default" ng-click="delRule()" ng-show="true" aria-label="Delete Item" title="Delete Item">
+				<span class="glyphicon glyphicon-trash"></span>
+			</button>
+		</div>
+	</div><!-- /input-group -->
+	<hr />
+	<div class="input-group">
+		<span class="input-group-addon">Add Rule</span>
+		<input type="text" class="form-control" ng-model="newRule">
+		<div class="input-group-btn">
+			<button type="button" class="btn btn-default" ng-click="addRule()" ng-show="true" aria-label="Add Item" title="Add Item">
+				<span class="glyphicon glyphicon-plus"></span>
+			</button>
+		</div>
+	</div>
+</div><!-- /.col-lg-12 -->
