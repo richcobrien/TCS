@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="./dist/css/bootstrap.min.css">
     <!-- Bootstrap theme -->
     <link rel="stylesheet" href="./dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="./dist/css/ui-bootstrap-custom-2.1.3-csp.css">
     
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link rel="stylesheet" href="./dist/css/ie10-viewport-bug-workaround.css">
@@ -70,26 +71,28 @@
     <script src="./dist/js/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="https://getbootstrap.com/assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="./dist/js/bootstrap.min.js"></script>
+    <script src="./dist/js/ui-bootstrap-custom-2.1.3.min.js"></script>
+    <script src="./dist/js/ui-bootstrap-custom-tpls-2.1.3.min.js"></script>
     <script src="./dist/js/jquery.bootstrap-autohidingnavbar.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script async src="https://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 		<script>
-			var acc = document.getElementsByClassName("media-text"), i;
+			var acc = document.getElementsByClassName('media-text'), i;
 			for (i = 0; i < acc.length; i++) {
 					acc[i].onclick = function(){
-							this.classList.toggle("active");
-							this.nextElementSibling.classList.toggle("show");
+							this.classList.toggle('active');
+							this.nextElementSibling.classList.toggle('show');
 				}
 			};
 		</script>
     <script>
       // Auto hide navbar when detecting smaller view ports
       function hideDetect(){
-        $(".navbar-fixed-top").autoHidingNavbar();
+        $('.navbar-fixed-top').autoHidingNavbar();
         if ($(window).width() > 500) {
           // Keep menu fixed on big screens
           $('.navbar-fixed-top').autoHidingNavbar('setDisableAutohide', true);
-          $(".navbar-fixed-top").autoHidingNavbar('show');
+          $('.navbar-fixed-top').autoHidingNavbar('show');
         } else {
           // Auto-hide menu on narrow screens (smaller smart phones)
           $('.navbar-fixed-top').autoHidingNavbar('setDisableAutohide', false);

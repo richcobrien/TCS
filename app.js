@@ -3,7 +3,7 @@
 /*global getElementById */
 /*global alert */
 
-var myApp = angular.module('myApp', ['ngRoute', 'ngMessages', 'ngAnimate']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngMessages', 'ngAnimate', 'ui.bootstrap']);
 myApp.config(function ($routeProvider) {
   'use strict';
   $routeProvider
@@ -365,7 +365,7 @@ myApp.controller('loginController', ['$scope', '$log', '$http', '$timeout', '$lo
   $scope.open = function ($event) {
 		console.log('$scope.open clicked');
     $event.preventDefault();
-    $event.stopPropagation();
+    //$event.stopPropagation();
     $scope.opened = true;
   };
 
@@ -615,8 +615,16 @@ myApp.controller('contactsController', ['$scope', '$log', '$http', '$localStorag
     $http.get('./dbsource/people_get.php')
     //$http.get('/dbsource/person.json')
       .success(function (response) {
+        
         $scope.people = $scope.peopleTmp = response;
+        var people = $scope.people;
+        $scope.propertyName = $scope.formattedName;
+        $scope.people = orderBy(people, $scope.propertyName, false);
         $localStorage.setObject('people', $scope.people);
+        
+        //$scope.reverse = $scope.isABReverse = ($scope.reverse) ? false : true;
+        //console.log('$scope.reverse:' + $scope.reverse);
+        //$scope.people = orderBy(people, $scope.propertyName, $scope.reverse);
       })
       .error(function (data, status) {
         console.log(data);
@@ -1042,8 +1050,7 @@ myApp.controller('contactsController', ['$scope', '$log', '$http', '$localStorag
   $scope.open = function ($event) {
 		console.log('$scope.open clicked');
     $event.preventDefault();
-    $event.stopPropagation();
-
+    //$event.stopPropagation();
     $scope.opened = true;
   };
 

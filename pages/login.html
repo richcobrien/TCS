@@ -155,11 +155,9 @@
                ng-change="changeBirthdate()" 
                ng-required="true" 
                uib-datepicker-popup 
-               date-popup={{format}} 
                is-open="opened" 
                datepicker-options="dateOptions" 
-               date-disabled="disabled(date, mode)" 
-               close-text="Done">
+               close-text="Done" >
 				<span class="input-group-btn">
 					<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 				</span>

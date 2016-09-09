@@ -8,7 +8,7 @@
     <span title="sort" role="button" class="input-group-lg input-group-addon glyphicon glyphicon glyphicon-sort-by-alphabet" ng-class="{ 'glyphicon-sort-by-alphabet-alt': isABReverse }" ng-click="sortBuddiesAB()" style="cursor: pointer;" selectable="false"></span>
 		<span title="add" role="button" class="input-group-lg input-group-addon glyphicon glyphicon-plus" data-toggle="collapse" data-target="#addDialog" style="cursor: pointer;" selectable="false" ng-click="appFocusadd()"></span>
 	</div>
-	<div id="searchDialog" class="panel-body collapse" aria-expanded="false" show-aria is-open>
+	<div id="searchDialog" class="panel-body collapse" aria-expanded="false" show-aria>
     <form name="searchForm" class="form-horizontal" role="form" ng-model="searchPerson" novalidate>
       <div class="input-group input-group-lg" title="Search Buddies" aria-label="Search Buddies">
         <input type="text" class="form-control" id="appsearch" name="appsearch" placeholder="Search..." data-ng-model="person.search" ng-change="searchBuddies()" autofocus zauto-focus>
